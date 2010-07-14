@@ -110,7 +110,7 @@ class MY_Exceptions extends CI_Exceptions
 		{
 			// This error is not suppressed by current error reporting settings
 			// Convert the error into an ErrorException
-			throw new ErrorException($error, $code, 0, $file, $line);
+			self::exception_handler(new ErrorException($error, $code, 0, $file, $line));
 		}
 
 		// Do not execute the PHP error handler
