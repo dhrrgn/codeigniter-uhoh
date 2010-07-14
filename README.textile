@@ -21,3 +21,11 @@ h1. Installation
 
 
 Thats it...to see what it looks like, just intentionally cause an error in your app.
+
+h3. Coming Soon!
+
+The following features are in the works:
+
+* Allow you to optionally disable the error messages.
+* Integrate logging when enabled
+* Extend show_error() to output nicer looking messages
