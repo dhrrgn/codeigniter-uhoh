@@ -1,0 +1,12 @@
+h1. UhOh! Changelog
+
+h2. v1.1
+
+* Better handling for getting absolute paths for the system and application directories.
+* Now logs error messages to the CodeIgniter log when enabled.
+* Added a nicer looking General Error template.
+* Extended show_error() so that it won't send headers if it has already been sent.
+
+h2. v1.0
+
+Initial Release

@@ -1,6 +1,6 @@
 h1. CodeIgniter UhOh!
 
-Version: 1.0
+Version: 1.1
 
 UhOh is an extension on CI_Extensions that provides awesome error messages with full backtraces and a view of the line with the error
 
@@ -17,16 +17,10 @@ h1. Installation
 2. Copy the contents of the config/hooks.php file into your hooks config.
 3. Enable hooks in your config file.
 4. Copy the libraries/MY_Exceptions.php file to your application/libraries folder.*
-5. Copy errors/error_php_custom.php to your application/errors folder
+5. Copy errors/error_php_custom.php to your application/errors folder.
+5. Copy errors/error_general.php to your application/errors folder.
 
 *If your are using CodeIgniter 2.0 you must copy the MY_Exceptions.php file to application/core, instead of libraries.*
 
 
 Thats it...to see what it looks like, just intentionally cause an error in your app.
-
-h3. Coming Soon!
-
-The following features are in the works:
-
-* Allow you to optionally disable the error messages.
-* Extend show_error() to output nicer looking messages
