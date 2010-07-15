@@ -144,6 +144,8 @@ class MY_Exceptions extends CI_Exceptions
 			// Create a text version of the exception
 			$error = self::exception_text($e);
 
+			// Log the error message
+			log_message('error', $error, TRUE);
 
 			// Get the exception backtrace
 			$trace = $e->getTrace();

@@ -29,5 +29,4 @@ h3. Coming Soon!
 The following features are in the works:
 
 * Allow you to optionally disable the error messages.
-* Integrate logging when enabled
 * Extend show_error() to output nicer looking messages
