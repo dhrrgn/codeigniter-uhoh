@@ -82,11 +82,11 @@ class MY_Exceptions extends CI_Exceptions
 	 */
 	public static function debug_path($file)
 	{
-		if (strpos($file, realpath(FCPATH . APPPATH)) === 0)
+		if (strpos($file, ABS_APPPATH) === 0)
 		{
 			$file = 'APPPATH/'.substr($file, strlen(realpath(FCPATH . APPPATH) . '/'));
 		}
-		elseif (strpos($file, BASEPATH) === 0)
+		elseif (strpos($file, ABS_SYSDIR) === 0)
 		{
 			$file = 'SYSDIR/'.substr($file, strlen(BASEPATH));
 		}
@@ -177,7 +177,7 @@ class MY_Exceptions extends CI_Exceptions
 			ob_start();
 
 			// This will include the custom error file.
-			require FCPATH . APPPATH . 'errors/error_php_custom.php';
+			require ABS_APPPATH . 'errors/error_php_custom.php';
 
 			// Display the contents of the output buffer
 			echo ob_get_clean();
