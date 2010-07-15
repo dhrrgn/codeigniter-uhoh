@@ -455,8 +455,14 @@ class MY_Exceptions extends CI_Exceptions
 		$file = NULL;
 		$line = NULL;
 		
+		$is_from_app = FALSE;
+		if(isset($trace[1]['file']) AND strpos($trace[1]['file'], ABS_APPPATH) === 0)
+		{
+			$is_from_app = !self::is_extension($trace[1]['file']);
+		}
+
 		// If the application called show_error, don't output a backtrace, just the error
-		if(isset($trace[0]['file']) AND strpos($trace[1]['file'], ABS_APPPATH) === 0)
+		if($is_from_app)
 		{
 			$message = '<p>'.implode('</p><p>', ( ! is_array($message)) ? array($message) : $message).'</p>';
 
@@ -474,7 +480,7 @@ class MY_Exceptions extends CI_Exceptions
 		// If the system called show_error, so lets find the actual file and line in application/ that caused it.
 		foreach($trace as $call)
 		{
-			if(isset($call['file']) AND strpos($call['file'], ABS_APPPATH) === 0)
+			if(isset($call['file']) AND strpos($call['file'], ABS_APPPATH) === 0 AND !self::is_extension($call['file']))
 			{
 				$file = $call['file'];
 				$line = $call['line'];
@@ -485,6 +491,27 @@ class MY_Exceptions extends CI_Exceptions
 
 		self::exception_handler(new ErrorException($message, E_ERROR, 0, $file, $line));
 		return;
+	}
+	
+	/**
+	 * Is Extension
+	 *
+	 * This checks to see if the file path is to a core extension.
+	 *
+	 * @access	private
+	 * @param	string	$file
+	 * @return	bool
+	 */
+	private static function is_extension($file)
+	{
+		foreach(array('libraries/', 'core/') as $folder)
+		{
+			if(strpos($file, ABS_APPPATH . $folder . config_item('subclass_prefix')) === 0)
+			{
+				return TRUE;
+			}
+		}
+		return FALSE;
 	}
 }
 
