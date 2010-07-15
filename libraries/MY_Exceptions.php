@@ -65,6 +65,9 @@ class MY_Exceptions extends CI_Exceptions
 
 		// Set the handler for shutdown to catch Parse errors
 		register_shutdown_function(array('MY_Exceptions', 'shutdown_handler'));
+
+		// This is a hack to set the default timezone if it isn't set. Not setting it causes issues.
+		date_default_timezone_set(date_default_timezone_get());
 	}
 
 	/**
