@@ -1,5 +1,9 @@
 h1. UhOh! Changelog
 
+h2. v1.3
+
+* Patched show_error so that it now detects if the error was thrown by an extension (i.e. MY_Loader), if so treat it as a system file.
+
 h2. v1.2
 
 * The show_error now outputs a stack trace as well as shows you the original line that caused the error (i.e. the line that loads the view in your app).
