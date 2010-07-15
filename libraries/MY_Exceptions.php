@@ -9,6 +9,7 @@
  * @package		CodeIgniter
  * @author		Dan Horrigan <http://dhorrigan.com>
  * @license		Apache License v2.0
+ * @version		1.0
  */
 
 /**
