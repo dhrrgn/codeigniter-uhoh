@@ -2,7 +2,24 @@ h1. CodeIgniter UhOh!
 
 Version: 1.2
 
-UhOh is an extension on CI_Extensions that provides awesome error messages with full backtraces and a view of the line with the error
+UhOh is an extension on CI_Extensions that provides awesome error messages with full backtraces and a view of the line with the error.
+
+It catches all errors including:
+
+* E_PARSE
+* E_ERROR
+* E_USER_ERROR
+* E_COMPILE_ERROR
+* E_ERROR
+* E_USER_ERROR
+* E_PARSE
+* E_WARNING
+* E_USER_WARNING
+* E_STRICT
+* E_NOTICE
+* E_RECOVERABLE_ERROR
+
+It also outputs full backtraces for all CodeIgniter system errors.  No more "Where is it trying to load that view?", it will show you the line that called it and the surrounding lines.
 
 h4. Credit
 
