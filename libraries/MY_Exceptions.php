@@ -451,18 +451,40 @@ class MY_Exceptions extends CI_Exceptions
 		{
 			set_status_header($status_code);
 		}
+		$trace = debug_backtrace();
+		$file = NULL;
+		$line = NULL;
 		
-		$message = '<p>'.implode('</p><p>', ( ! is_array($message)) ? array($message) : $message).'</p>';
-
-		if (ob_get_level() > $this->ob_level + 1)
+		// If the application called show_error, don't output a backtrace, just the error
+		if(isset($trace[0]['file']) AND strpos($trace[1]['file'], ABS_APPPATH) === 0)
 		{
-			ob_end_flush();	
+			$message = '<p>'.implode('</p><p>', ( ! is_array($message)) ? array($message) : $message).'</p>';
+
+			if (ob_get_level() > $this->ob_level + 1)
+			{
+				ob_end_flush();	
+			}
+			ob_start();
+			include(APPPATH.'errors/'.$template.EXT);
+			$buffer = ob_get_contents();
+			ob_end_clean();
+			return $buffer;
 		}
-		ob_start();
-		include(APPPATH.'errors/'.$template.EXT);
-		$buffer = ob_get_contents();
-		ob_end_clean();
-		return $buffer;
+		
+		// If the system called show_error, so lets find the actual file and line in application/ that caused it.
+		foreach($trace as $call)
+		{
+			if(isset($call['file']) AND strpos($call['file'], ABS_APPPATH) === 0)
+			{
+				$file = $call['file'];
+				$line = $call['line'];
+				break;
+			}
+		}
+		unset($trace);
+
+		self::exception_handler(new ErrorException($message, E_ERROR, 0, $file, $line));
+		return;
 	}
 }
 

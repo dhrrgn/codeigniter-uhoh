@@ -1,5 +1,9 @@
 h1. UhOh! Changelog
 
+h2. v1.2
+
+* The show_error now outputs a stack trace as well as shows you the original line that caused the error (i.e. the line that loads the view in your app).
+
 h2. v1.1
 
 * Better handling for getting absolute paths for the system and application directories.
