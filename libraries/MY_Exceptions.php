@@ -84,11 +84,11 @@ class MY_Exceptions extends CI_Exceptions
 	{
 		if (strpos($file, ABS_APPPATH) === 0)
 		{
-			$file = 'APPPATH/'.substr($file, strlen(realpath(FCPATH . APPPATH) . '/'));
+			$file = 'APPPATH/'.substr($file, strlen(ABS_APPPATH);
 		}
 		elseif (strpos($file, ABS_SYSDIR) === 0)
 		{
-			$file = 'SYSDIR/'.substr($file, strlen(BASEPATH));
+			$file = 'SYSDIR/'.substr($file, strlen(ABS_SYSDIR));
 		}
 		elseif (strpos($file, FCPATH) === 0)
 		{
