@@ -476,7 +476,9 @@ class MY_Exceptions extends CI_Exceptions
 			ob_end_clean();
 			return $buffer;
 		}
-		
+
+		$message = implode(' / ', ( ! is_array($message)) ? array($message) : $message);
+
 		// If the system called show_error, so lets find the actual file and line in application/ that caused it.
 		foreach($trace as $call)
 		{
