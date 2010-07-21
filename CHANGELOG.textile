@@ -1,5 +1,9 @@
 h1. UhOh! Changelog
 
+h2. v1.4
+
+* Fixed issue that caused a Fatal Error when show_error() was called with an array.
+
 h2. v1.3
 
 * Patched show_error so that it now detects if the error was thrown by an extension (i.e. MY_Loader), if so treat it as a system file.

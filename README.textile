@@ -1,6 +1,6 @@
 h1. CodeIgniter UhOh!
 
-Version: 1.3
+Version: 1.4
 
 UhOh is an extension on CI_Extensions that provides awesome error messages with full backtraces and a view of the line with the error.
 
