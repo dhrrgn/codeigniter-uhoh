@@ -63,7 +63,7 @@ class MY_Exceptions extends CI_Exceptions
 	 */
 	public function __construct()
 	{
-		parent::CI_Exceptions();
+		parent::__construct();
 		
 		// If we are in production, then lets dump out now.
 		if (IN_PRODUCTION)
@@ -95,13 +95,13 @@ class MY_Exceptions extends CI_Exceptions
 	 */
 	public static function debug_path($file)
 	{
-		if (strpos($file, ABS_APPPATH) === 0)
+		if (strpos($file, APPPATH) === 0)
 		{
-			$file = 'APPPATH/'.substr($file, strlen(ABS_APPPATH));
+			$file = 'APPPATH/'.substr($file, strlen(APPPATH));
 		}
-		elseif (strpos($file, ABS_SYSDIR) === 0)
+		elseif (strpos($file, SYSDIR) === 0)
 		{
-			$file = 'SYSDIR/'.substr($file, strlen(ABS_SYSDIR));
+			$file = 'SYSDIR/'.substr($file, strlen(SYSDIR));
 		}
 		elseif (strpos($file, FCPATH) === 0)
 		{
@@ -192,7 +192,7 @@ class MY_Exceptions extends CI_Exceptions
 			ob_start();
 
 			// This will include the custom error file.
-			require ABS_APPPATH . 'errors/error_php_custom.php';
+			require APPPATH . 'errors/error_php_custom.php';
 
 			// Display the contents of the output buffer
 			echo ob_get_clean();
@@ -475,7 +475,7 @@ class MY_Exceptions extends CI_Exceptions
 		$line = NULL;
 		
 		$is_from_app = FALSE;
-		if(isset($trace[1]['file']) AND strpos($trace[1]['file'], ABS_APPPATH) === 0)
+		if(isset($trace[1]['file']) AND strpos($trace[1]['file'], APPPATH) === 0)
 		{
 			$is_from_app = !self::is_extension($trace[1]['file']);
 		}
@@ -501,7 +501,7 @@ class MY_Exceptions extends CI_Exceptions
 		// If the system called show_error, so lets find the actual file and line in application/ that caused it.
 		foreach($trace as $call)
 		{
-			if(isset($call['file']) AND strpos($call['file'], ABS_APPPATH) === 0 AND !self::is_extension($call['file']))
+			if(isset($call['file']) AND strpos($call['file'], APPPATH) === 0 AND !self::is_extension($call['file']))
 			{
 				$file = $call['file'];
 				$line = $call['line'];
@@ -527,7 +527,7 @@ class MY_Exceptions extends CI_Exceptions
 	{
 		foreach(array('libraries/', 'core/') as $folder)
 		{
-			if(strpos($file, ABS_APPPATH . $folder . config_item('subclass_prefix')) === 0)
+			if(strpos($file, APPPATH . $folder . config_item('subclass_prefix')) === 0)
 			{
 				return TRUE;
 			}
